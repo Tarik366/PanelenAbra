@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PCDS Panel</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style/panel.css') }}">
+    <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
@@ -86,16 +86,6 @@
                 <div class="m10l full s-control">
                     <h3>Service Control:</h3>
                     <div class="control-panel">
-                        <div class="reboot">
-                            <div class="rebootton">
-                                <button type="button">
-                                    <span class="material-symbols-rounded">
-                                        power_settings_new
-                                    </span>
-                                </button>
-                            </div>
-                            Reboot
-                        </div>
                         <div class="suspend">
                             <div class="Suspentton">
                                 <button type="button" onclick="suspend()">
@@ -150,6 +140,10 @@
                 <h3>File Manager</h3>
             </div>
         </div>
+    </div>
+
+    <div class="frame-container">
+        <iframe allowfullscreen width="300" src="sd.html" frameborder="0"></iframe>
     </div>
     <script>
         var token = "{{ token }}";

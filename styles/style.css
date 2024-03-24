@@ -163,3 +163,10 @@ progress {
     text-align: center;
     
 }
+
+.frame-container {
+	position: fixed;
+	height: 150px;
+	right: -50px;
+	bottom: 0;
+}
