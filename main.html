@@ -23,23 +23,23 @@
                     <div class="cpu">
                         <div class="cpu-alt flex">
                             <h3>CPU</h3>
-                            <span>31%</span>        
+                            <span id="cpu_usage">31%</span>        
                         </div>
-                        <progress id="cpu" value="31" max="100"> 31% </progress>
+                        <progress id="cpu_usage_bar" value="31" max="100"> 31% </progress>
                     </div>
                     <div class="ram">
                         <div class="ram-alt flex">
                             <h3>RAM</h3>
-                            <span>9%</span>
+                            <span id="ram_usage">9%</span>
                         </div>
-                        <progress id="ram" value="9" max="100"> 31% </progress>
+                        <progress id="ram_usage_bar" value="9" max="100"> 31% </progress>
                     </div>
                     <div class="disk">
                         <div class="disk-alt flex">
                             <h3>DISK</h3>
-                            <span>90%</span>    
+                            <span id="disk_usage">90%</span>    
                         </div>
-                        <progress id="disk" value="90" max="100"> 31% </progress>
+                        <progress id="disk_usage_bar" value="90" max="100"> 31% </progress>
                     </div>
                 </div>
             </div>
@@ -148,5 +148,6 @@
             </div>
         </div>
     </div>
+    <script src="scripts/script.js"> </script>
 </body>
 </html>
