@@ -1,21 +1,29 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abra Panel</title>
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>PCDS Panel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/panel.css') }}">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
+
 <body>
     <div class="main-panel">
         <div class="header">
             <h1>Dashboard</h1>
-            <a href="http://">Log out</a>
+            <form action="/panel" method="POST">
+                <input class="senddata" value="{{ token }}" name="token">
+                <input class="senddata" value="panel" name="client">
+                <input class="senddata" value="logout" name="process">
+                <button type="submit">Logout</button>
+            </form>
         </div>
         <div class="main-board">
             <div class="connect">
-                <h3>You can connect to server with this IP's</h3>
-                <li>blabla.abra.cum</li>
+                <h3>You can connect to server with this IP</h3>
+                <li id="header_ip">Loading...</li>
             </div>
             <div class="resources">
                 <h3>Resource Usage:</h3>
@@ -23,50 +31,54 @@
                     <div class="cpu">
                         <div class="cpu-alt flex">
                             <h3>CPU</h3>
-                            <span id="cpu_usage">31%</span>        
+                            <span id="cpu_usage">Loading...</span>
                         </div>
-                        <progress id="cpu_usage_bar" value="31" max="100"> 31% </progress>
+                        <progress id="cpu_usage_bar" value="0" max="100"></progress>
                     </div>
                     <div class="ram">
                         <div class="ram-alt flex">
                             <h3>RAM</h3>
-                            <span id="ram_usage">9%</span>
+                            <span id="ram_usage">Loading...</span>
                         </div>
-                        <progress id="ram_usage_bar" value="9" max="100"> 31% </progress>
+                        <progress id="ram_usage_bar" value="0" max="100"></progress>
                     </div>
                     <div class="disk">
                         <div class="disk-alt flex">
                             <h3>DISK</h3>
-                            <span id="disk_usage">90%</span>    
+                            <span id="disk_usage">Loading...</span>
                         </div>
-                        <progress id="disk_usage_bar" value="90" max="100"> 31% </progress>
+                        <progress id="disk_usage_bar" value="0" max="100"></progress>
                     </div>
                 </div>
             </div>
             <div class="service">
                 <div class="m10l full s-infos">
-                    <h3>Service Information:</h3>
+                    <h3>Software Information:</h3>
                     <div class="s-info-table">
                         <table>
                             <tr>
-                                <th>Display Name:</th>
-                                <th>Kompüter-i Abra</th>
+                                <th>Software Name</th>
+                                <th id="software_name">Loading...</th>
                             </tr>
                             <tr>
                                 <th>Status</th>
-                                <th>Active</th>
+                                <th id="software_status">Loading...</th>
                             </tr>
                             <tr>
                                 <th>Version</th>
-                                <th>1.0.0</th>
+                                <th id="software_version">Loading...</th>
                             </tr>
                             <tr>
                                 <th>Environment</th>
-                                <th>Alem-i Abra</th>
+                                <th id="software_env">Loading...</th>
                             </tr>
                             <tr>
-                                <th>State</th>
-                                <th>Running</th>
+                                <th>Runing as</th>
+                                <th id="software_running_user">Loading...</th>
+                            </tr>
+                            <tr>
+                                <th>Port</th>
+                                <th id="software_port">Loading...</th>
                             </tr>
                         </table>
                     </div>
@@ -86,7 +98,7 @@
                         </div>
                         <div class="suspend">
                             <div class="Suspentton">
-                                <button type="button">
+                                <button type="button" onclick="suspend()">
                                     <span class="material-symbols-rounded">
                                         dark_mode
                                     </span>
@@ -96,7 +108,7 @@
                         </div>
                         <div class="wake-up">
                             <div class="waketton">
-                                <button type="button">
+                                <button type="button" onclick="wakeup()">
                                     <span class="material-symbols-rounded">
                                         bolt
                                     </span>
@@ -107,39 +119,30 @@
                     </div>
                 </div>
                 <div class="full node-info">
-                    <h3>Node Information:</h3>
+                    <h3>Server Information:</h3>
                     <div class="s-info-table">
                         <table>
                             <tr>
-                                <th>Name:</th>
-                                <th>İşlem-i Abra</th>
+                                <th>Name</th>
+                                <th id="server_name">Loading...</th>
                             </tr>
                             <tr>
                                 <th>Location</th>
-                                <th>Mozambique</th>
+                                <th id="server_location">Loading...</th>
                             </tr>
                             <tr>
-                                <th>Specs</th>
-                                <th>AMD Ryzen 3100 - 32GB RAM</th>
+                                <th>CPU</th>
+                                <th id="server_specs_cpu">Loading...</th>
                             </tr>
                             <tr>
-                                <th>Status</th>
-                                <th>Auto</th>
+                                <th>GPU</th>
+                                <th id="server_specs_gpu">Loading...</th>
                             </tr>
                             <tr>
-                                <th>Placement</th>
-                                <th>Auto</th>
-                            </tr>
-                            <tr>
-                                <th>Node IP</th>
-                                <th>blabla.abra.cum</th>
+                                <th>RAM</th>
+                                <th id="server_specs_ram">Loading...</th>
                             </tr>
                         </table>
-                        <div class="sips">
-                            Server IP's:
-                            <li>blabla.abra.cum:3131</li>
-                            <li>51.674.374.12:3131</li>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -148,6 +151,10 @@
             </div>
         </div>
     </div>
-    <script src="scripts/script.js"> </script>
+    <script>
+        var token = "{{ token }}";
+    </script>
+    <script src="{{ url_for('static', filename='script/panel.js') }}"></script>
 </body>
+
 </html>
